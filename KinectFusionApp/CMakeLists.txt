@@ -12,7 +12,7 @@ set(PROJECT_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 #                 Dependencies
 # ------------------------------------------------
 ## CUDA
-find_package(CUDA 8.0 REQUIRED)
+find_package(CUDA 10.2 REQUIRED)
 IF (CUDA_FOUND)
     include_directories("${CUDA_INCLUDE_DIRS}")
     # Optional: Specify the arch of your CUDA hardware here
@@ -34,8 +34,12 @@ if (EIGEN3_INCLUDE_DIR)
     include_directories("${EIGEN3_INCLUDE_DIR}")
 endif (EIGEN3_INCLUDE_DIR)
 
-## OpenNI2
-find_package(openni2)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}")
+set(OPENNI2_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../dependencies/OpenNI2/Include" CACHE PATH "OpenNI2 Include directory")
+set(OPENNI2_LIBRARY "${CMAKE_CURRENT_SOURCE_DIR}/../dependencies/OpenNI2/Bin/x64-Release/libOpenNI2.so" CACHE PATH "OpenNI2 library")
+
+# OpenNI2
+find_package(OpenNI2 REQUIRED)
 if (OPENNI2_FOUND)
     include_directories("${OPENNI2_INCLUDE_DIR}")
 endif (OPENNI2_FOUND)
@@ -43,7 +47,7 @@ endif (OPENNI2_FOUND)
 ## Intel RealSense
 find_package(realsense2 REQUIRED)
 if (realsense2_FOUND)
-    include_directories("${realsense_INCLUDE_DIR}")
+    include_directories("${realsense2_INCLUDE_DIR}")
 endif (realsense2_FOUND)
 # ------------------------------------------------
 
