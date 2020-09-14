@@ -16,7 +16,7 @@ find_package(CUDA 10.2 REQUIRED)
 IF (CUDA_FOUND)
     include_directories("${CUDA_INCLUDE_DIRS}")
     # Optional: Specify the arch of your CUDA hardware here
-    SET(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3;-std=c++11 -gencode arch=compute_20,code=sm_21)
+    SET(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-O3;-std=c++11 -gencode arch=compute_61,code=sm_61)
 ENDIF ()
 
 ## OpenCV
@@ -56,5 +56,5 @@ include_directories(${CMAKE_SOURCE_DIR}/KinectFusionLib/include)
 
 file(GLOB KinectFusionApp_SRCS ${PROJECT_SOURCE_DIR}/*.cpp)
 
-add_executable(KinectFusionApp ${KinectFusionApp_SRCS})
+cuda_add_executable(KinectFusionApp ${KinectFusionApp_SRCS})
 target_link_libraries(KinectFusionApp ${OpenCV_LIBS} ${OPENNI2_LIBRARY} ${realsense2_LIBRARY} KinectFusion)

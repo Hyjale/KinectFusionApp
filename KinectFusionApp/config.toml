@@ -1,13 +1,13 @@
 # Configuration file for KinectFusionApp
 
-data_path = "/home/christian/share/dataset/"
+data_path = "/home/hyjale/Desktop/TUM_dataset/"
 recording_name = "woman"
 
 # Input camera settings
 [camera]
 #type = "Pseudo"
-#type = "Xtion"
-type = "RealSense"
+type = "Xtion"
+#type = "RealSense"
 
 [camera.realsense]
 live = true
